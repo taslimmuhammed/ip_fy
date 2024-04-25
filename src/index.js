@@ -1,23 +1,30 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import Ethers from './Context/EthersContext';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Searcher from './Context/SearchContext';
-import "@biconomy/web3-auth/dist/src/style.css"
+import React from "react";
+import { createRoot } from "react-dom/client";
+import 'bootstrap/dist/css/bootstrap.css';
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { ThirdwebProvider } from "@thirdweb-dev/react";
+import "./Styles/globals.css";
+import { BrowserRouter as Router } from "react-router-dom";
+import Ethers from "./Context/EthersContext";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const container = document.getElementById("root");
+const root = createRoot(container);
 root.render(
   <React.StrictMode>
-    <Searcher>
-    <Ethers><App /></Ethers>
-    </Searcher>
+    <ToastContainer />
+    {/* /IIm1xrgYITqBO8GZiAYKAhOlYiD9IDehX9q5CDdUbdAdHyoIufCc058LW5RAcitNAdFinBqC6T6KVK4XZ-1F3Q
+ */}
+    <ThirdwebProvider clientId="d38b4842e9d041746be46984e4baab53">
+      <Router>
+        <Ethers>
+          <App />
+        </Ethers>
+      </Router>
+    </ThirdwebProvider>
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
